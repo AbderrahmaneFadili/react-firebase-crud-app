@@ -9,6 +9,7 @@ const Contacts = ({
   deleteContactAction,
   contactsLoading,
   enableIsEditingAction,
+  getContactByIdAction,
 }) => {
   useEffect(() => {
     fetchContacts();
@@ -19,8 +20,9 @@ const Contacts = ({
     setTimeout(() => fetchContacts(), 1000);
   };
 
-  const handleEditeClick = () => {
+  const handleEditeClick = (id) => {
     enableIsEditingAction();
+    getContactByIdAction(id);
   };
 
   return (
@@ -62,7 +64,7 @@ const Contacts = ({
                         ></i>
                         <i
                           className="fas fa-pencil-alt"
-                          onClick={handleEditeClick}
+                          onClick={() => handleEditeClick(contact.id)}
                         ></i>
                       </td>
                     </tr>

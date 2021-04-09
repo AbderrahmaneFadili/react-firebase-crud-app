@@ -9,6 +9,18 @@ const ContactForm = (props) => {
   };
 
   const [values, setValues] = useState(intialFieldsValues);
+  console.log(props);
+  useEffect(() => {
+    if (props.contact !== null) {
+      setValues({
+        ...values,
+        fullName: props.contact.fullName,
+        mobile: props.contact.mobile,
+        email: props.contact.email,
+        address: props.contact.address,
+      });
+    }
+  }, [props.contact]);
 
   //handle input change
   const handleInputChange = (event) => {

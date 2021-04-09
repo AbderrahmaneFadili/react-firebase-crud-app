@@ -4,6 +4,7 @@ import ContactsCompoenent from "./components/Contacts";
 import {
   fetchContacts,
   deleteContactAction,
+  getContactByIdAction,
 } from "../../redux/actions/contactsActions";
 import { enableIsEditingAction } from "../../redux/actions/isEditingActions";
 
@@ -20,5 +21,6 @@ const mapDispatchToProps = (dispatch) => ({
   fetchContacts: () => dispatch(fetchContacts()),
   deleteContactAction: (id) => dispatch(deleteContactAction(id)),
   enableIsEditingAction: () => dispatch(enableIsEditingAction()),
+  getContactByIdAction: (id) => dispatch(getContactByIdAction(id)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Contacts);

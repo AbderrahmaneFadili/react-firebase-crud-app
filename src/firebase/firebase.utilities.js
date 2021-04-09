@@ -14,4 +14,9 @@ const addContact = (contact) => {
 const deleteContact = (id) => {
   return db.collection("contacts").doc(id).delete();
 };
-export { getAllContacts, addContact, deleteContact };
+
+//get document
+const getContactById = (id) => {
+  return db.collection("contacts").doc(id).get();
+};
+export { getAllContacts, addContact, deleteContact, getContactById };

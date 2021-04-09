@@ -8,6 +8,9 @@ import {
   DELETE_CONTACT_BEGIN,
   DELETE_CONTACT_FAILURE,
   DELETE_CONTACT_SUCCESS,
+  GET_CONTACT_BY_ID_BEGIN,
+  GET_CONTACT_BY_ID_SUCCESS,
+  GET_CONTACT_BY_ID_FAILURE,
 } from "../types/contactsTypes";
 
 //contacts reducer initial state
@@ -57,6 +60,7 @@ const contactReducer = (
     loading: false,
     contactId: null,
     error: null,
+    contact: null,
   },
   action,
 ) => {
@@ -101,6 +105,24 @@ const contactReducer = (
         ...state,
         loading: false,
         contactId: null,
+        error: action.payload,
+      };
+    case GET_CONTACT_BY_ID_BEGIN:
+      return {
+        ...state,
+        contact: null,
+        loading: true,
+      };
+    case GET_CONTACT_BY_ID_SUCCESS:
+      return {
+        ...state,
+        contact: action.payload,
+        loading: false,
+      };
+    case GET_CONTACT_BY_ID_FAILURE:
+      return {
+        ...state,
+        contact: null,
         error: action.payload,
       };
     default:

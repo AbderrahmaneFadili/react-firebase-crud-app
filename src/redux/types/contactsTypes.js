@@ -20,3 +20,11 @@ export const DELETE_CONTACT_BEGIN = "DELETE_CONTACT_BEGIN";
 export const DELETE_CONTACT_SUCCESS = "DELETE_CONTACT_SUCCESS";
 //delete contact failure
 export const DELETE_CONTACT_FAILURE = "DELETE_CONTACT_FAILURE";
+
+//get contact by id begin
+export const GET_CONTACT_BY_ID_BEGIN = "GET_CONTACT_BY_ID_BEGIN";
+
+//get contact by id success
+export const GET_CONTACT_BY_ID_SUCCESS = "GET_CONTACT_BY_ID_SUCCESS";
+//get contact by id failure
+export const GET_CONTACT_BY_ID_FAILURE = "GET_CONTACT_BY_ID_FAILURE";

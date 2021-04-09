@@ -20,6 +20,7 @@ const mapStateToProps = ({ contactReducer, isEditingReducer }) => ({
   error: contactReducer.error,
   contactId: contactReducer.contactId,
   isEditing: isEditingReducer.isEditing,
+  contact: contactReducer.contact,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);

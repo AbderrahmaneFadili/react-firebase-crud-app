@@ -8,12 +8,16 @@ import {
   DELETE_CONTACT_BEGIN,
   DELETE_CONTACT_SUCCESS,
   DELETE_CONTACT_FAILURE,
+  GET_CONTACT_BY_ID_BEGIN,
+  GET_CONTACT_BY_ID_SUCCESS,
+  GET_CONTACT_BY_ID_FAILURE,
 } from "../types/contactsTypes";
 
 import {
   getAllContacts,
   addContact,
   deleteContact,
+  getContactById,
 } from "../../firebase/firebase.utilities";
 
 ///// get all contacts acions ////
@@ -87,4 +91,28 @@ export const deleteContactAction = (id) => (dispatch) => {
       dispatch(deleteContactSuccess(data.id));
     })
     .catch((error) => dispatch(deleteContactFailure(error)));
+};
+
+///// get contact by id ////
+const getContactByIdBegin = () => ({
+  type: GET_CONTACT_BY_ID_BEGIN,
+});
+
+const getContactByIdSuccess = (payload) => ({
+  type: GET_CONTACT_BY_ID_SUCCESS,
+  payload,
+});
+
+const getContactByIdFailure = (payload) => ({
+  payload,
+  type: GET_CONTACT_BY_ID_FAILURE,
+});
+
+export const getContactByIdAction = (id) => (dispatch) => {
+  dispatch(getContactByIdBegin());
+  getContactById(id)
+    .then((data) => {
+      dispatch(getContactByIdSuccess(data.data()));
+    })
+    .catch((error) => dispatch(getContactByIdFailure(error)));
 };
