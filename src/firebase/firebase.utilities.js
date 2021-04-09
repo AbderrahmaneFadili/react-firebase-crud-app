@@ -10,4 +10,8 @@ const addContact = (contact) => {
   return db.collection("contacts").add(contact);
 };
 
-export { getAllContacts, addContact };
+//delete document
+const deleteContact = (id) => {
+  return db.collection("contacts").doc(id).delete();
+};
+export { getAllContacts, addContact, deleteContact };

@@ -5,9 +5,16 @@ import {
   ADD_CONTACTS_BEGIN,
   ADD_CONTACTS_SUCCESS,
   ADD_CONTACTS_FAILURE,
+  DELETE_CONTACT_BEGIN,
+  DELETE_CONTACT_SUCCESS,
+  DELETE_CONTACT_FAILURE,
 } from "../types/contactsTypes";
 
-import { getAllContacts, addContact } from "../../firebase/firebase.utilities";
+import {
+  getAllContacts,
+  addContact,
+  deleteContact,
+} from "../../firebase/firebase.utilities";
 
 ///// get all contacts acions ////
 const fetchContactsBegin = () => ({
@@ -53,7 +60,31 @@ export const addContactAction = (contact) => (dispatch) => {
   dispatch(addContactBegin());
   addContact(contact)
     .then((data) => {
-      dispatch(addContactSuccess(data));
+      dispatch(addContactSuccess(data.id));
     })
     .catch((error) => dispatch(addContactFailure(error)));
+};
+
+//Delete Contact
+const deleteContactBegin = () => ({
+  type: DELETE_CONTACT_BEGIN,
+});
+
+const deleteContactSuccess = (payload) => ({
+  type: DELETE_CONTACT_SUCCESS,
+  payload,
+});
+
+const deleteContactFailure = (payload) => ({
+  type: DELETE_CONTACT_FAILURE,
+  payload,
+});
+
+export const deleteContactAction = (id) => (dispatch) => {
+  dispatch(deleteContactBegin);
+  deleteContact(id)
+    .then((data) => {
+      dispatch(deleteContactSuccess(data.id));
+    })
+    .catch((error) => dispatch(deleteContactFailure(error)));
 };

@@ -2,12 +2,27 @@ import React, { useEffect, useState } from "react";
 import ContactForm from "../../ContactForm";
 import "./Contacts.css";
 import Loader from "react-loader-spinner";
-import { findByLabelText } from "@testing-library/dom";
 
-const Contacts = ({ contacts, fetchContacts, loading }) => {
+const Contacts = ({
+  contacts,
+  fetchContacts,
+  deleteContactAction,
+  contactsLoading,
+  enableIsEditingAction,
+}) => {
   useEffect(() => {
     fetchContacts();
   }, []);
+
+  const handleDeleteClick = (id) => {
+    deleteContactAction(id);
+    setTimeout(() => fetchContacts(), 1000);
+  };
+
+  const handleEditeClick = () => {
+    enableIsEditingAction();
+  };
+
   return (
     <>
       <div className="jumbotron jumbotron-fluid">
@@ -36,20 +51,26 @@ const Contacts = ({ contacts, fetchContacts, loading }) => {
                 contacts.map((contact, i) => {
                   return (
                     <tr key={i.toString()}>
-                      <td>{contact.fullName}</td>
-                      <td>{contact.mobile}</td>
-                      <td>{contact.email}</td>
-                      <td>{contact.address}</td>
+                      <td>{contact.data().fullName}</td>
+                      <td>{contact.data().mobile}</td>
+                      <td>{contact.data().email}</td>
+                      <td>{contact.data().address}</td>
                       <td className="d-flex justify-content-between">
-                        <i className="fas fa-times"></i>
-                        <i className="fas fa-pencil-alt"></i>
+                        <i
+                          className="fas fa-times"
+                          onClick={() => handleDeleteClick(contact.id)}
+                        ></i>
+                        <i
+                          className="fas fa-pencil-alt"
+                          onClick={handleEditeClick}
+                        ></i>
                       </td>
                     </tr>
                   );
                 })}
             </tbody>
           </table>
-          {loading && (
+          {contactsLoading && (
             <div className="d-flex justify-content-center">
               <Loader type="ThreeDots" color="#333" height={30} width={30} />
             </div>

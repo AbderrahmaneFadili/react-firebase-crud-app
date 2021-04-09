@@ -5,6 +5,9 @@ import {
   ADD_CONTACTS_BEGIN,
   ADD_CONTACTS_SUCCESS,
   ADD_CONTACTS_FAILURE,
+  DELETE_CONTACT_BEGIN,
+  DELETE_CONTACT_FAILURE,
+  DELETE_CONTACT_SUCCESS,
 } from "../types/contactsTypes";
 
 //contacts reducer initial state
@@ -27,7 +30,7 @@ const contactsReducer = (state = initialState, action) => {
       const docs = action.payload;
       const contactsList = [];
       docs.forEach((doc) => {
-        contactsList.push(doc.data());
+        contactsList.push(doc);
       });
       return {
         ...state,
@@ -73,6 +76,27 @@ const contactReducer = (
         error: null,
       };
     case ADD_CONTACTS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        contactId: null,
+        error: action.payload,
+      };
+    case DELETE_CONTACT_BEGIN:
+      return {
+        ...state,
+        loading: true,
+        contactId: null,
+        error: null,
+      };
+    case DELETE_CONTACT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        contactId: action.payload,
+        error: null,
+      };
+    case DELETE_CONTACT_FAILURE:
       return {
         ...state,
         loading: false,

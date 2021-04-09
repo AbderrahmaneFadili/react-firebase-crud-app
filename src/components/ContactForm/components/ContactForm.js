@@ -29,6 +29,8 @@ const ContactForm = (props) => {
       values.address === ""
     ) {
       alert("Please fill all the fields");
+    } else if (props.isEditing) {
+      props.disableEditingAction();
     } else {
       props.addContactAction({
         address: values.address,
@@ -105,12 +107,13 @@ const ContactForm = (props) => {
           placeholder="Address"
           name="address"
           rows="3"
+          value={values.address}
           onChange={handleInputChange}
         ></textarea>
       </div>
       <div className="form-group">
         <button type="submit" className="btn btn-dark btn-block">
-          Save
+          {props.isEditing ? "Update" : "Save"}
         </button>
       </div>
     </form>
