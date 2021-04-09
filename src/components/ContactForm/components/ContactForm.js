@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const ContactForm = () => {
+const ContactForm = (props) => {
   const intialFieldsValues = {
     fullName: "",
     mobile: "",
@@ -22,7 +22,31 @@ const ContactForm = () => {
   //handle Submit
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert("HHHHHH");
+    if (
+      values.fullName === "" ||
+      values.mobile === "" ||
+      values.email === "" ||
+      values.address === ""
+    ) {
+      alert("Please fill all the fields");
+    } else {
+      props.addContactAction({
+        address: values.address,
+        email: values.email,
+        fullName: values.fullName,
+        mobile: values.mobile,
+      });
+
+      props.fetchContacts();
+
+      setValues({
+        ...values,
+        fullName: "",
+        address: "",
+        mobile: "",
+        email: "",
+      });
+    }
   };
 
   return (

@@ -5,10 +5,10 @@ import { fetchContacts } from "../../redux/actions/contactsActions";
 
 const Contacts = (props) => <ContactsCompoenent {...props} />;
 
-const mapStateToProps = (state) => ({
-  loading: state.loading,
-  contacts: state.contacts,
-  error: state.error,
+const mapStateToProps = ({ contactsReducer }) => ({
+  loading: contactsReducer.loading,
+  contacts: contactsReducer.contacts,
+  error: contactsReducer.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({

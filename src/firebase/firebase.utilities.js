@@ -5,4 +5,9 @@ const getAllContacts = () => {
   return db.collection("contacts").get();
 };
 
-export { getAllContacts };
+//add document
+const addContact = (contact) => {
+  return db.collection("contacts").add(contact);
+};
+
+export { getAllContacts, addContact };

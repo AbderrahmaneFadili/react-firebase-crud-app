@@ -1,0 +1,21 @@
+i {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.fas.fa-times {
+  font-size: 1.344rem;
+  color: rgb(228, 86, 86);
+}
+
+.fas.fa-times:active {
+  transform: scale(1.2);
+}
+
+.fas.fa-pencil-alt {
+  font-size: 1.2rem;
+  color: rgb(69, 69, 206);
+}
+.fas.fa-pencil-alt:active {
+  transform: scale(1.2);
+}
